@@ -16,7 +16,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-    <ta.cucumber.runner.version>1.2.0-RELEASE</ta.cucumber.runner.version>
     <ta.debug.mode>false</ta.debug.mode>
   </properties>
 
@@ -95,6 +94,7 @@
           <version>3.0.0</version>
         </plugin>
         <!-- Prerequisites pour runner Concombre -->
+        <!--
         <plugin>
           <groupId>org.squashtest.ta.galaxia</groupId>
           <artifactId>squash-tf-gherkin-maven-plugin</artifactId>
@@ -110,25 +110,20 @@
 
             <featuresList>${ta.feature}</featuresList>
             <squashRoot>squash</squashRoot>
-            <!-- DryRunOptions for dryrun goal only -->
             <additionnalDryRunChecks>true</additionnalDryRunChecks>
 
-            <!-- Define exporters -->
             <gkexporters>
               <exporter
                       implementation="org.squashtest.ta.commons.exporter.surefire.SurefireSuiteResultExporter">
                 <jenkinsAttachmentMode>${ta.jenkins.attachment.mode}</jenkinsAttachmentMode>
               </exporter>
-              <!--<exporter implementation="org.squashtest.ta.commons.exporter.html.HtmlSuiteResultExporter"/>-->
 
               <exporter implementation="org.squashtest.ta.gherkin.exporter.HtmlGherkinSuiteResultExporter" />
 
             </gkexporters>
 
-            <!-- Define configurers -->
             <gkconfigurers>
               <configurer implementation="org.squashtest.ta.maven.TmCallBack">
-                <!-- <tmCallBack> -->
                 <endpointURL>${status.update.events.url}</endpointURL>
                 <executionExternalId>${squash.ta.external.id}</executionExternalId>
                 <jobName>${jobname}</jobName>
@@ -137,7 +132,6 @@
                 <reportBaseUrl>${ta.tmcallback.reportbaseurl}</reportBaseUrl>
                 <jobExecutionId>${ta.tmcallback.jobexecutionid}</jobExecutionId>
                 <reportName>${ta.tmcallback.reportname}</reportName>
-                <!-- </tmCallBack> -->
               </configurer>
             </gkconfigurers>
 
@@ -146,9 +140,7 @@
           <executions>
             <execution>
               <goals>
-                <!-- to execute feature files -->
                 <goal>run</goal>
-                <!-- to check feature files are runable (DryRun) -->
                 <goal>dryrun</goal>
               </goals>
             </execution>
@@ -158,6 +150,7 @@
     </pluginManagement>
   </build>
   <!-- Squash TA maven plugin repository -->
+  <!--
   <pluginRepositories>
     <pluginRepository>
       <id>org.squashtest.plugins.release</id>
@@ -171,4 +164,5 @@
       </releases>
     </pluginRepository>
   </pluginRepositories>
+  -->
 </project>
